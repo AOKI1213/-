@@ -3,38 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>画像コレクション</title>
+
   <style>
-    @media screen and (max-width: 600px) {
-
-  body {
-    padding: 12px;
-  }
-
-  h1 {
-    font-size: 20px;
-  }
-
-  /* スマホは2列固定 */
-  .gallery {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-
-  .card {
-    padding: 8px;
-  }
-
-  .title {
-    font-size: 13px;
-  }
-}
-
     body {
       font-family: sans-serif;
       padding: 20px;
     }
- </style>
-</head>
+
+    h1 {
+      font-size: 24px;
+    }
+
     /* 検索ボックス */
     #search {
       width: 100%;
@@ -69,8 +48,33 @@
       margin-top: 8px;
       font-size: 14px;
     }
+
+    /* スマホ対応 */
+    @media screen and (max-width: 600px) {
+      body {
+        padding: 12px;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .card {
+        padding: 8px;
+      }
+
+      .title {
+        font-size: 13px;
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <h1>画像コレクション</h1>
@@ -86,7 +90,6 @@
     <div class="card" data-title="ガブリアス">
       <img src="images/gaburiasu.jpg" alt="ガブリアス">
       <div class="title">ガブリアス</div>
-
     </div>
 
     <div class="card" data-title="リザードン">
