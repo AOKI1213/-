@@ -6,125 +6,130 @@
   <title>画像コレクション</title>
 
   <style>
-body {
-  font-family: sans-serif;
-  padding: 20px;
-}
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
 
-h1 {
-  font-size: 24px;
-}
+    h1 {
+      font-size: 24px;
+    }
 
-/* 検索ボックス */
-#search {
-  width: 100%;
-  max-width: 400px;
-  padding: 10px;
-  font-size: 16px;
-  margin-bottom: 20px;
-}
+    #search {
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
 
-/* グリッド表示（PC） */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 16px;
-}
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+    }
 
-.card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 10px;
-  text-align: center;
-  background: #fff;
-}
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      background: #fff;
+      cursor: pointer;
+    }
 
-.card img {
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-}
+    .card img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
 
-.title {
-  margin-top: 8px;
-  font-size: 14px;
-}
+    .title {
+      margin-top: 8px;
+      font-size: 14px;
+    }
 
-/* ✅ スマホ対応（1列） */
-@media screen and (max-width: 600px) {
-  body {
-    padding: 12px;
-  }
+    @media screen and (max-width: 600px) {
+      body { padding: 12px; }
+      h1 { font-size: 20px; }
+      .gallery { grid-template-columns: 1fr; gap: 12px; }
+      .title { font-size: 13px; }
+    }
 
-  h1 {
-    font-size: 20px;
-  }
+    /* モーダル */
+    #modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
 
-  .gallery {
-    grid-template-columns: 1fr; /* ← 1列 */
-    gap: 12px;
-  }
-
-  .card {
-    cursor: pointer;
-    padding: 8px;
-  }
-
-  .card img {
-    max-height: 70vh;
-    object-fit: contain;
-  }
-
-  .title {
-    font-size: 13px;
-  }
-}
-
+    #modal img {
+      max-width: 95%;
+      max-height: 95%;
+      object-fit: contain;
+    }
   </style>
 </head>
 
 <body>
 
-  <h1>画像コレクション</h1>
+<h1>画像コレクション</h1>
 
-  <input
-    type="text"
-    id="search"
-    placeholder="カード名で検索"
-  >
+<input type="text" id="search" placeholder="カード名で検索">
 
-  <div class="gallery" id="gallery">
-
-    <div class="card" data-title="ガブリアス">
-      <img src="images/gaburiasu.jpg" alt="ガブリアス">
-      <div class="title">ガブリアス</div>
-    </div>
-
-    <div class="card" data-title="リザードン">
-      <img src="images/charizard.jpg" alt="リザードン">
-      <div class="title">リザードン</div>
-    </div>
-
-    <div class="card" data-title="フシギダネ">
-      <img src="images/bulbasaur.jpg" alt="フシギダネ">
-      <div class="title">フシギダネ</div>
-    </div>
-
+<div class="gallery">
+  <div class="card" data-title="ガブリアス">
+    <img src="images/gaburiasu.jpg">
+    <div class="title">ガブリアス</div>
   </div>
 
-  <script>
-    const searchInput = document.getElementById("search");
-    const cards = document.querySelectorAll(".card");
+  <div class="card" data-title="リザードン">
+    <img src="images/charizard.jpg">
+    <div class="title">リザードン</div>
+  </div>
 
-    searchInput.addEventListener("input", () => {
-      const keyword = searchInput.value.toLowerCase();
+  <div class="card" data-title="フシギダネ">
+    <img src="images/bulbasaur.jpg">
+    <div class="title">フシギダネ</div>
+  </div>
+</div>
 
-      cards.forEach(card => {
-        const title = card.dataset.title.toLowerCase();
-        card.style.display = title.includes(keyword) ? "block" : "none";
-      });
+<!-- モーダル（1つだけ） -->
+<div id="modal">
+  <img id="modalImage">
+</div>
+
+<script>
+  const searchInput = document.getElementById("search");
+  const cards = document.querySelectorAll(".card");
+  const modal = document.getElementById("modal");
+  const modalImage = document.getElementById("modalImage");
+
+  searchInput.addEventListener("input", () => {
+    const keyword = searchInput.value.toLowerCase();
+    cards.forEach(card => {
+      const title = card.dataset.title.toLowerCase();
+      card.style.display = title.includes(keyword) ? "block" : "none";
     });
-  </script>
+  });
+
+  document.querySelectorAll(".card img").forEach(img => {
+    img.addEventListener("click", () => {
+      modalImage.src = img.src;
+      modal.style.display = "flex";
+    });
+  });
+
+  modal.addEventListener("click", () => {
+    modal.style.display = "none";
+    modalImage.src = "";
+  });
+</script>
 
 </body>
 </html>
+
