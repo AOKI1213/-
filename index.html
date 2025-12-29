@@ -4,11 +4,37 @@
   <meta charset="UTF-8">
   <title>画像コレクション</title>
   <style>
+    @media screen and (max-width: 600px) {
+
+  body {
+    padding: 12px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  /* スマホは2列固定 */
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .card {
+    padding: 8px;
+  }
+
+  .title {
+    font-size: 13px;
+  }
+}
+
     body {
       font-family: sans-serif;
       padding: 20px;
     }
-
+ </style>
+</head>
     /* 検索ボックス */
     #search {
       width: 100%;
