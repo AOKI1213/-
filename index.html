@@ -6,76 +6,74 @@
   <title>画像コレクション</title>
 
   <style>
-    body {
-      font-family: sans-serif;
-      padding: 20px;
-    }
+body {
+  font-family: sans-serif;
+  padding: 20px;
+}
 
-    h1 {
-      font-size: 24px;
-    }
+h1 {
+  font-size: 24px;
+}
 
-    /* 検索ボックス */
-    #search {
-      width: 100%;
-      max-width: 400px;
-      padding: 10px;
-      font-size: 16px;
-      margin-bottom: 20px;
-    }
+/* 検索ボックス */
+#search {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
 
-    /* グリッド表示 */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 16px;
-    }
+/* グリッド表示（PC） */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
 
-    .card {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 10px;
-      text-align: center;
-      background: #fff;
-    }
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  background: #fff;
+}
 
-    .card img {
-      width: 100%;
-      height: auto;
-      border-radius: 4px;
-    }
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
 
-    .title {
-      margin-top: 8px;
-      font-size: 14px;
-    }
+.title {
+  margin-top: 8px;
+  font-size: 14px;
+}
 
-    /* スマホ対応 */
-    @media screen and (max-width: 600px) {
-      body {
-        padding: 12px;
-      }
+/* ✅ スマホ対応（1列） */
+@media screen and (max-width: 600px) {
+  body {
+    padding: 12px;
+  }
 
-      h1 {
-        font-size: 20px;
-      }
+  h1 {
+    font-size: 20px;
+  }
 
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-      }
+  .gallery {
+    grid-template-columns: 1fr; /* ← ここが超重要 */
+    gap: 12px;
+  }
 
-      .card {
-        padding: 8px;
-      }
+  .card {
+    padding: 8px;
+  }
 
-      .title {
-        font-size: 13px;
-     @media screen and (max-width: 600px) {
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
+  .title {
+    font-size: 13px;
+  }
+}
+   
   </style>
 </head>
 
