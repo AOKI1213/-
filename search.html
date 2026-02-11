@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Card Search</title>
 
 <style>
@@ -73,14 +74,13 @@ input{
 const normalize = (s) => (s || "").toLowerCase().replace(/\s+/g, "");
 
 // ---------------------------
-// 0) pages array (ALL binders go here)
+// pages array (ALL binders go here)
 // ---------------------------
 const pages = [];
 
 // ---------------------------
-// 1) Yellow Binder (manual: safest)
-//  - Page numbers are sequential by this list order.
-//  - Image paths are exactly your filenames.
+// 1) Yellow Binder
+//    ページ番号は「この配列の順番」で 1,2,3... になる
 // ---------------------------
 const yellowPages = [
   { image:"yellow/91_IMG_0228.jpg", cards:["gengar"] },
@@ -137,8 +137,15 @@ const yellowPages = [
   { image:"yellow/40_IMG_0279.jpg", cards:["scrafty"] },
   { image:"yellow/39_IMG_0280.jpg", cards:["scrafty","hawlucha"] },
   { image:"yellow/38_IMG_0281.jpg", cards:["hawlucha"] },
+
+  /* 34〜37（前に抜けてたやつも入れた：ポケモン名だけ） */
+  { image:"yellow/37_IMG_0282.jpg", cards:["jynx","bulbasaur","slowpoke","squirtle","dratini"] },
+  { image:"yellow/36_IMG_0283.jpg", cards:["grimer","dragonite","mewtwo","venusaur","hitmonchan","eevee","skarmory","steelix","slowking","doduo"] },
+  { image:"yellow/35_IMG_0284.jpg", cards:["togepi","hooh","rayquaza","deoxys","darkrai","cresselia"] },
+  { image:"yellow/34_IMG_0285.jpg", cards:["palkia","dialga","raikou","suicune","entei"] },
+
   { image:"yellow/33_IMG_0286.jpg", cards:["gardevoir","mawile","pikachu","mew","charizard","meowth","garchomp","gyarados"] },
-  { image:"yellow/32_IMG_0287.jpg", cards:["latias","latios","greninja","zoroark","magikarp","wailord","lucario","melmetal"] },
+  { image:"yellow/32_IMG_0287.jpg", cards:["latias","latios","greninja","zoroark","magikarp","wailord","lucario","melmetal","rowlet","alolan exeggutor"] },
   { image:"yellow/31_IMG_0288.jpg", cards:["moltres","zapdos","articuno","reshiram","zekrom","lucario","melmetal","arceus","dialga","palkia","marshadow","machamp"] },
   { image:"yellow/30_IMG_0289.jpg", cards:["reshiram","charizard","togepi","eevee","snorlax"] },
   { image:"yellow/29_IMG_0290.jpg", cards:["pheromosa","buzzwole","garchomp","giratina"] },
@@ -213,7 +220,7 @@ Object.entries(grayPages).forEach(([page, cards]) => {
     binder: "Gray Binder",
     page: Number(page),
     image: `gray/page ${page} of the gray binder.jpg`,
-    cards
+    cards: cards
   });
 });
 
@@ -292,14 +299,14 @@ Object.entries(whitePages).forEach(([page, cards]) => {
     binder: "White Binder",
     page: Number(page),
     image: `white/page ${page} of the white binder.jpg`,
-    cards
+    cards: cards
   });
 });
 
 // ---------------------------
-// 4) Search UI
+// Search UI
 // ---------------------------
-document.getElementById("search").addEventListener("input", e => {
+document.getElementById("search").addEventListener("input", (e) => {
   const word = e.target.value.trim();
   const result = document.getElementById("result");
 
