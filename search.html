@@ -179,6 +179,82 @@ Object.entries(grayPages).forEach(([page, cards]) => {
     cards: cards
   });
 });
+// ---------------------------
+// 3) White Binder pages (added)
+// ---------------------------
+const whitePages = {
+  1:["gengar"],
+  2:["umbreon","darkrai"],
+  3:["espeon","deoxys"],
+  4:["arceus","dialga","palkia"],
+  5:["garchomp","giratina"],
+  6:["togepi","cleffa","igglybuff"],
+  7:["naganadel","guzzlord"],
+  8:["marshadow","machamp"],
+  9:["lucario","melmetal"],
+  10:["celebi","venusaur"],
+  11:["rowlet","alolan exeggutor"],
+  12:["sableye","tyranitar"],
+  13:["pheromosa","buzzwole"],
+  14:["venusaur","snivy"],
+  15:["muk","alolan muk"],
+  16:["blastoise","piplup"],
+  17:["trevenant","dusknoir"],
+  18:["latias","latios"],
+  19:["charizard","braixen"],
+  20:["reshiram","zekrom"],
+  21:["reshiram","charizard"],
+  22:["pikachu","zekrom"],
+  23:["moltres","zapdos","articuno"],
+  24:["raichu","alolan raichu"],
+  25:["slowpoke","psyduck"],
+  26:["lopunny","jigglypuff"],
+  27:["magikarp","wailord"],
+  28:["eevee","snorlax"],
+  29:["mewtwo","mew"],
+  30:["greninja","zoroark"],
+  31:["solgaleo","lunala"],
+  32:["gardevoir","sylveon"],
+  33:["arceus","dialga","palkia","regigigas"],
+  34:["reshiram","zekrom","latios","latias"],
+  35:["kyurem","celebi","manaphy"],
+  36:["shaymin","jirachi","volcanion","arceus"],
+  37:["victini","meloetta","magearna","darkrai"],
+  38:["keldeo","genesect","mew"],
+  39:["magnezone","slowking","meganium","tyranitar"],
+  40:["blissey","crobat","typhlosion","feraligatr"],
+  41:["ampharos","lanturn","houndoom","scizor"],
+  42:["yanmega","celebi","absol","kingdra"],
+  43:["machamp","steelix","ursaring","electrode"],
+  44:["donphan","snorlax","pikachu","charizard"],
+  45:["blaziken","leafeon","glaceon","lucario"],
+  46:["regigigas","absol","tangrowth","rayquaza"],
+  47:["arceus","garchomp"],
+  48:["shaymin","mewtwo","arceus","floatzel"],
+  49:["palkia","dialga","gardevoir"],
+  50:["dusknoir","empoleon","palkia","magmortar"],
+  51:["shaymin","torterra","porygon"],
+  52:["regigigas","raichu","palkia","dialga"],
+  53:["luxray","drapion","shaymin","dialga"],
+  54:["mewtwo","palkia","darkrai","infernape"],
+  55:["uxie","azelf","mesprit","mismagius"],
+  56:["rhyperior","honchkrow","cresselia","electivire"],
+  57:["infernape","machamp","hippowdon","gallade"],
+  58:["heatran","gliscor","magnezone"],
+  59:["electivire","porygon","infernape","lucario"],
+  60:["empoleon","alakazam","flygon","staraptor"],
+  61:["drapion","salamence","giratina","garchomp"],
+  62:["trevenant","dusknoir","togepi","cleffa","igglybuff","naganadel","guzzlord","pheromosa","buzzwole","raichu","alolan raichu","lucario","melmetal","marshadow","machamp","blastoise","piplup","latios","latias","charizard","braixen","gengar","mimikyu","slowpoke","psyduck","gardevoir","sylveon","moltres","zapdos","articuno","mew","mewtwo","reshiram"],
+  63:["sableye","tyranitar","rowlet","alolan exeggutor","lopunny","jigglypuff","celebi","venusaur","arceus","dialga","palkia","eevee","snorlax","magikarp","wailord","muk","alolan muk","pikachu","zekrom","garchomp","giratina","espeon","deoxys","snivy","umbreon","darkrai","greninja","zoroark","meowth"],
+  64:["meowth"]
+};
+
+Object.entries(whitePages).forEach(([page, cards]) => {
+  pages.push({
+    image: `white/page ${page} of the white binder.jpg`,
+    cards: cards
+  });
+});
 
 // ---------------------------
 // Search
@@ -190,8 +266,10 @@ document.getElementById("search").addEventListener("input", e => {
   result.innerHTML = "";
   if(!word) return;
 
+  const normalize = (s) => s.toLowerCase().replace(/\s+/g, "");
+
   pages.forEach(p => {
-    const hit = p.cards.some(c => c.includes(word));
+    const hit = p.cards.some(c => normalize(c).includes(normalize(word)));
     if(hit){
       result.innerHTML += `
         <div class="card">
@@ -202,6 +280,8 @@ document.getElementById("search").addEventListener("input", e => {
     }
   });
 });
+
+
 </script>
 
 </body>
