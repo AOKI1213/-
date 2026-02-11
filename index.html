@@ -50,6 +50,28 @@ a{
 a:hover{
  transform:translateY(-2px);
 }
+.dot{
+  display:inline-block;
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  margin-right:10px;
+  vertical-align:middle;
+  border:1px solid rgba(0,0,0,0.08);
+  box-shadow:0 1px 3px rgba(0,0,0,0.2);
+}
+
+.yellow{ background:#FFD84D; }
+.gray{ background:#BFC3C8; }
+.black{ background:#222; }
+.orange{ background:#F59E0B; }
+.white{ background:#FFFFFF; border:1px solid #ddd; }
+
+.white{
+  background:#FFFFFF;
+  border:1px solid #ddd;
+}
+
 </style>
 </head>
 
@@ -65,11 +87,11 @@ a:hover{
 
 <a href="search.html">🔍 Search Cards</a>
 
-<a href="yellow.html">🟡 Yellow Binder</a>
-<a href="gray.html">⚪ Gray Binder</a>
-<a href="black.html">⚫ Black Binder</a>
-<a href="orange.html">🟠 Orange Binder</a>
-<a href="white.html">⚪ White Binder</a>
+<a href="yellow.html"><span class="dot yellow"></span> Yellow Binder</a>
+<a href="gray.html"><span class="dot gray"></span> Gray Binder</a>
+<a href="black.html"><span class="dot black"></span> Black Binder</a>
+<a href="orange.html"><span class="dot orange"></span> Orange Binder</a>
+<a href="white.html"><span class="dot white"></span> White Binder</a>
 
 </body>
 </html>
