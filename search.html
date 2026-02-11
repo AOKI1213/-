@@ -12,13 +12,6 @@ body{
   background:#fafafa;
 }
 
-a.back{
-  display:inline-block;
-  margin-bottom:12px;
-  text-decoration:none;
-  color:#333;
-}
-
 input{
   width:100%;
   padding:12px;
@@ -31,20 +24,13 @@ input{
 .card{
   background:#fff;
   padding:12px;
-  margin-bottom:16px;
-  border-radius:12px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom:12px;
+  border-radius:10px;
 }
 
 .card img{
   width:100%;
-  border-radius:10px;
-}
-
-.meta{
-  margin-top:8px;
-  font-size:13px;
-  font-weight:600;
+  border-radius:8px;
 }
 
 .tag{
@@ -53,157 +39,131 @@ input{
   margin-top:6px;
   line-height:1.4;
 }
+
+.tag b{
+  color:#111;
+}
 </style>
 </head>
 
 <body>
 
-<a class="back" href="index.html">← back</a>
-
 <h2>Search Cards</h2>
-
 <input id="search" placeholder="Enter the name of the Pokémon">
 
 <div id="result"></div>
 
 <script>
 
-// ----------------------
-// Helper
-// ----------------------
-const normalize = (s) => (s || "").toLowerCase().replace(/\s+/g,"");
-
-// ----------------------
-// All pages container
-// ----------------------
-const pages = [];
-
-// ======================
-// 1) Yellow Binder
-// ======================
-
-const yellowPages = [
-  { image:"yellow/91_IMG_0228.jpg", cards:["gengar"] },
-  { image:"yellow/90_IMG_0229.jpg", cards:["charizard"] },
-  { image:"yellow/89_IMG_0230.jpg", cards:["gardevoir"] },
-  { image:"yellow/88_IMG_0231.jpg", cards:["lucario"] },
-  { image:"yellow/87_IMG_0232.jpg", cards:["dragonite"] },
-  { image:"yellow/86_IMG_0233.jpg", cards:["abomasnow"] },
-  { image:"yellow/85_IMG_0234.jpg", cards:["diancie"] },
-  { image:"yellow/84_IMG_0235.jpg", cards:["eelektross"] },
-  { image:"yellow/83_IMG_0236.jpg", cards:["hawlucha"] },
-  { image:"yellow/82_IMG_0237.jpg", cards:["scrafty"] },
-  { image:"yellow/81_IMG_0238.jpg", cards:["audino","rayquaza","kangaskhan"] },
-  { image:"yellow/80_IMG_0239.jpg", cards:["tyranitar","manectric","altaria","houndoom"] },
-  { image:"yellow/79_IMG_0240.jpg", cards:["heracross","alakazam","glalie","lucario"] },
-  { image:"yellow/78_IMG_0241.jpg", cards:["sharpedo","mawile","blastoise","venusaur"] },
-  { image:"yellow/77_IMG_0242.jpg", cards:["diancie","slowbro","sceptile","camerupt"] },
-  { image:"yellow/76_IMG_0243.jpg", cards:["aggron","aerodactyl","latios","steelix"] },
-  { image:"yellow/75_IMG_0244.jpg", cards:["gyarados","ampharos","metagross","scizor"] },
-  { image:"yellow/74_IMG_0245.jpg", cards:["gallade","gardevoir","salamence"] },
-  { image:"yellow/73_IMG_0246.jpg", cards:["mewtwo","gyarados","kingdra"] },
-  { image:"yellow/72_IMG_0247.jpg", cards:["tentacruel","gyarados","lapras","feraligatr"] },
-  { image:"yellow/71_IMG_0248.jpg", cards:["feraligatr","poliwrath","blastoise","golduck","gyarados"] },
-  { image:"yellow/70_IMG_0249.jpg", cards:["articuno","vaporeon","blastoise"] },
-  { image:"yellow/69_IMG_0250.jpg", cards:["gyarados","kabutops","entei","ninetales","arcanine","moltres"] },
-  { image:"yellow/68_IMG_0251.jpg", cards:["flareon","entei","hooh","chansey","clefairy"] },
-  { image:"yellow/67_IMG_0252.jpg", cards:["snorlax","clefable","pidgeot","dragonite","lugia","persian"] },
-  { image:"yellow/66_IMG_0253.jpg", cards:["ditto","delibird","porygon","wigglytuff","clefable","snorlax","aerodactyl","machamp"] },
-  { image:"yellow/65_IMG_0254.jpg", cards:["dugtrio","rhydon","machamp","kabutops","donphan","hitmonlee"] },
-  { image:"yellow/64_IMG_0255.jpg", cards:["raichu","zapdos","ampharos","magneton","raikou"] },
-  { image:"yellow/63_IMG_0256.jpg", cards:["magneton","electrode","raichu","pichu","jolteon"] },
-  { image:"yellow/62_IMG_0257.jpg", cards:["pichu","pinsir","celebi","venusaur","vileplume","heracross","bellossom","nidoking"] },
-  { image:"yellow/61_IMG_0258.jpg", cards:["jumpluff","nidoqueen","arbok","venusaur","muk"] },
-  { image:"yellow/60_IMG_0259.jpg", cards:["crobat","jumpluff","weezing"] },
-  { image:"yellow/59_IMG_0260.jpg", cards:["vileplume","golbat","venusaur","meganium"] },
-  { image:"yellow/58_IMG_0261.jpg", cards:["meganium","crobat","victreebel","nidoking","venomoth","scyther","wobbuffet"] },
-  { image:"yellow/57_IMG_0262.jpg", cards:["alakazam","starmie","slowbro","hypno","mr mime"] },
-  { image:"yellow/56_IMG_0263.jpg", cards:["hypno","alakazam","mew","mewtwo"] },
-  { image:"yellow/55_IMG_0264.jpg", cards:["slowking","mew","haunter","mr mime","alakazam","misdreavus","charizard"] },
-  { image:"yellow/54_IMG_0265.jpg", cards:["charizard","gengar"] },
-  { image:"yellow/53_IMG_0266.jpg", cards:["gengar"] },
-  { image:"yellow/52_IMG_0267.jpg", cards:["gengar"] },
-  { image:"yellow/51_IMG_0268.jpg", cards:["gengar","dragonite"] },
-  { image:"yellow/50_IMG_0269.jpg", cards:["dragonite","lucario"] },
-  { image:"yellow/49_IMG_0270.jpg", cards:["lucario"] },
-  { image:"yellow/48_IMG_0271.jpg", cards:["lucario","gardevoir"] },
-  { image:"yellow/47_IMG_0272.jpg", cards:["gardevoir"] },
-  { image:"yellow/46_IMG_0273.jpg", cards:["gardevoir"] },
-  { image:"yellow/45_IMG_0274.jpg", cards:["gardevoir","abomasnow"] },
-  { image:"yellow/44_IMG_0275.jpg", cards:["abomasnow","diancie"] },
-  { image:"yellow/43_IMG_0276.jpg", cards:["diancie"] },
-  { image:"yellow/42_IMG_0277.jpg", cards:["eelektross"] },
-  { image:"yellow/41_IMG_0278.jpg", cards:["eelektross","scrafty"] },
-  { image:"yellow/40_IMG_0279.jpg", cards:["scrafty"] },
-  { image:"yellow/39_IMG_0280.jpg", cards:["scrafty","hawlucha"] },
-  { image:"yellow/38_IMG_0281.jpg", cards:["hawlucha"] },
-  { image:"yellow/33_IMG_0286.jpg", cards:["gardevoir","mawile","pikachu","mew","charizard","meowth","garchomp","gyarados"] },
-  { image:"yellow/32_IMG_0287.jpg", cards:["latias","latios","greninja","zoroark","magikarp","wailord","lucario","melmetal"] },
-  { image:"yellow/31_IMG_0288.jpg", cards:["moltres","zapdos","articuno","reshiram","zekrom","lucario","melmetal","arceus","dialga","palkia","marshadow","machamp"] },
-  { image:"yellow/30_IMG_0289.jpg", cards:["reshiram","charizard","togepi","eevee","snorlax"] },
-  { image:"yellow/29_IMG_0290.jpg", cards:["pheromosa","buzzwole","garchomp","giratina"] },
-  { image:"yellow/28_IMG_0291.jpg", cards:["garchomp","giratina","arceus","dialga","palkia","muk","charizard","keldeo","mewtwo","moltres"] }
+// ---------------------------
+// Yellow Binder (1〜56)
+// ---------------------------
+const yellowData = [
+["gengar"],
+["charizard"],
+["gardevoir"],
+["lucario"],
+["dragonite"],
+["abomasnow"],
+["diancie"],
+["eelektross"],
+["hawlucha"],
+["scrafty"],
+["audino","rayquaza","kangaskhan"],
+["tyranitar","manectric","altaria","houndoom"],
+["heracross","alakazam","glalie","lucario"],
+["sharpedo","mawile","blastoise","venusaur"],
+["diancie","slowbro","sceptile","camerupt"],
+["aggron","aerodactyl","latios","steelix"],
+["gyarados","ampharos","metagross","scizor"],
+["gallade","gardevoir","salamence"],
+["mewtwo","gyarados","kingdra"],
+["tentacruel","gyarados","lapras","feraligatr"],
+["feraligatr","poliwrath","blastoise","golduck","gyarados"],
+["articuno","vaporeon","blastoise"],
+["gyarados","kabutops","entei","ninetales","arcanine","moltres"],
+["flareon","entei","hooh","chansey","clefairy"],
+["snorlax","clefable","pidgeot","dragonite","lugia","persian"],
+["ditto","delibird","porygon","wigglytuff","clefable","snorlax","aerodactyl","machamp"],
+["dugtrio","rhydon","machamp","kabutops","donphan","hitmonlee"],
+["raichu","zapdos","ampharos","magneton","raikou"],
+["magneton","electrode","raichu","pichu","jolteon"],
+["pichu","pinsir","celebi","venusaur","vileplume","heracross","bellossom","nidoking"],
+["jumpluff","nidoqueen","arbok","venusaur","muk"],
+["crobat","jumpluff","weezing"],
+["vileplume","golbat","venusaur","meganium"],
+["meganium","crobat","victreebel","nidoking","venomoth","scyther","wobbuffet"],
+["alakazam","starmie","slowbro","hypno","mr mime"],
+["hypno","alakazam","mew","mewtwo"],
+["slowking","mew","haunter","mr mime","alakazam","misdreavus","charizard"],
+["charizard","gengar"],
+["gengar"],
+["gengar"],
+["gengar","dragonite"],
+["dragonite","lucario"],
+["lucario"],
+["lucario","gardevoir"],
+["gardevoir"],
+["gardevoir"],
+["gardevoir","abomasnow"],
+["abomasnow","diancie"],
+["diancie"],
+["eelektross"],
+["eelektross","scrafty"],
+["scrafty"],
+["scrafty","hawlucha"],
+["hawlucha"],
+["gardevoir","mawile","pikachu","mew","charizard","meowth","garchomp","gyarados"],
+["latias","latios","greninja","zoroark","magikarp","wailord","lucario","melmetal"],
+["moltres","zapdos","articuno","reshiram","zekrom","lucario","melmetal","arceus","dialga","palkia","marshadow","machamp"],
+["reshiram","charizard","togepi","eevee","snorlax"],
+["pheromosa","buzzwole","garchomp","giratina"],
+["garchomp","giratina","arceus","dialga","palkia","muk","charizard","keldeo","mewtwo","moltres"]
 ];
 
-yellowPages.forEach((p,i)=>{
+// ---------------------------
+// Build pages array
+// ---------------------------
+const pages = [];
+
+// Yellow
+yellowData.forEach((cards,index)=>{
   pages.push({
     binder:"Yellow Binder",
-    page:i+1,
-    image:p.image,
-    cards:p.cards
+    page:index+1,
+    image:`yellow/${91-index}_IMG_0${228+index}.jpg`,
+    cards:cards
   });
 });
 
-// ======================
-// 2) Gray Binder
-// ======================
-
-Object.entries(grayPages).forEach(([page,cards])=>{
-  pages.push({
-    binder:"Gray Binder",
-    page:Number(page),
-    image:`gray/page ${page} of the gray binder.jpg`,
-    cards
-  });
-});
-
-// ======================
-// 3) White Binder
-// ======================
-
-Object.entries(whitePages).forEach(([page,cards])=>{
-  pages.push({
-    binder:"White Binder",
-    page:Number(page),
-    image:`white/page ${page} of the white binder.jpg`,
-    cards
-  });
-});
-
-// ======================
+// ---------------------------
 // Search
-// ======================
+// ---------------------------
+document.getElementById("search").addEventListener("input", e => {
 
-document.getElementById("search").addEventListener("input", e=>{
-  const key = normalize(e.target.value.trim());
+  const word = e.target.value.toLowerCase().trim();
   const result = document.getElementById("result");
-  result.innerHTML="";
-  if(!key) return;
+  result.innerHTML = "";
+  if(!word) return;
+
+  const normalize = (s)=> s.toLowerCase().replace(/\s+/g,"");
 
   pages.forEach(p=>{
-    const hit = p.cards.some(c=>normalize(c).includes(key));
+    const hit = p.cards.some(c=> normalize(c).includes(normalize(word)));
     if(hit){
-      result.innerHTML+=`
+      result.innerHTML += `
         <div class="card">
           <img src="${p.image}">
-          <div class="meta">${p.binder} / Page ${p.page}</div>
-          <div class="tag">${p.cards.join(", ")}</div>
+          <div class="tag">
+            <b>${p.binder}</b> / Page ${p.page}<br>
+            ${p.cards.join(", ")}
+          </div>
         </div>
       `;
     }
   });
-});
 
+});
 </script>
 
 </body>
