@@ -3,55 +3,75 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>White Binder</title>
 
 <style>
 body{
+  padding:12px;
   font-family:sans-serif;
-  padding:16px;
   background:#fafafa;
 }
 
-a{
+a.back{
+  display:inline-block;
+  margin-bottom:12px;
   text-decoration:none;
-  color:#000;
+  color:#333;
+}
+
+h2{
+  margin-bottom:16px;
 }
 
 .card{
-  margin-bottom:18px;
+  margin-bottom:16px;
+  background:#fff;
+  padding:10px;
+  border-radius:10px;
 }
 
 .card img{
   width:100%;
-  border-radius:10px;
+  border-radius:8px;
 }
 
-.title{
+.page{
   font-size:13px;
-  color:#666;
   margin-top:6px;
+  color:#555;
+  font-weight:600;
 }
 </style>
+
 </head>
 
 <body>
 
-<a href="index.html">← Back</a>
+<a class="back" href="index.html">← back</a>
+
 <h2>White Binder</h2>
 
 <div id="gallery"></div>
 
 <script>
+
 const gallery = document.getElementById("gallery");
 
-for(let i=1;i<=64;i++){
-  gallery.innerHTML += `
-    <div class="card">
-      <img src="white/page ${i} of the white binder.jpg">
-      <div class="title">White Binder • Page ${i}</div>
-    </div>
+// 🔹 1〜64ページ自動生成
+for (let i = 1; i <= 64; i++) {
+
+  const div = document.createElement("div");
+  div.className = "card";
+
+  div.innerHTML = `
+    <img src="white/page ${i} of the white binder.jpg" alt="">
+    <div class="page">White Binder / Page ${i}</div>
   `;
+
+  gallery.appendChild(div);
 }
+
 </script>
 
 </body>
