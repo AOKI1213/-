@@ -1,36 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>White Binder</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>White Binder</title>
+
+<style>
+body{
+  font-family:sans-serif;
+  padding:16px;
+  background:#fafafa;
+}
+
+a{
+  text-decoration:none;
+  color:#000;
+}
+
+.card{
+  margin-bottom:18px;
+}
+
+.card img{
+  width:100%;
+  border-radius:10px;
+}
+
+.title{
+  font-size:13px;
+  color:#666;
+  margin-top:6px;
+}
+</style>
 </head>
 
 <body>
-  <div class="container">
 
-    <div class="nav">
-      <a class="btn" href="index.html">← Back</a>
-      <span class="btn" style="pointer-events:none;">⚪ White Binder</span>
-    </div>
+<a href="index.html">← Back</a>
+<h2>White Binder</h2>
 
-    <div class="gallery" id="gallery"></div>
-
-  </div>
+<div id="gallery"></div>
 
 <script>
 const gallery = document.getElementById("gallery");
 
-// 1～64ページ（※64枚なら <= 64 にする）
-for (let i = 1; i <= 64; i++) {
-  const div = document.createElement("div");
-  div.className = "card";
-  div.innerHTML = `
-    <img src="white/page ${i} of the white binder.jpg" loading="lazy">
-    <div class="meta">page ${i} of the white binder</div>
+for(let i=1;i<=64;i++){
+  gallery.innerHTML += `
+    <div class="card">
+      <img src="white/page ${i} of the white binder.jpg">
+      <div class="title">White Binder • Page ${i}</div>
+    </div>
   `;
-  gallery.appendChild(div);
 }
 </script>
 
