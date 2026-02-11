@@ -3,55 +3,144 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>White Binder</title>
+
+<title>Yellow Binder</title>
 
 <style>
 body{
+  padding:12px;
   font-family:sans-serif;
-  padding:16px;
   background:#fafafa;
 }
 
-a{
+a.back{
+  display:inline-block;
+  margin-bottom:12px;
   text-decoration:none;
-  color:#000;
+  color:#333;
+}
+
+h2{
+  margin-bottom:16px;
 }
 
 .card{
-  margin-bottom:18px;
+  margin-bottom:16px;
+  background:#fff;
+  padding:10px;
+  border-radius:10px;
 }
 
 .card img{
   width:100%;
-  border-radius:10px;
+  border-radius:8px;
 }
 
-.title{
+.page{
   font-size:13px;
-  color:#666;
   margin-top:6px;
+  color:#555;
+  font-weight:600;
 }
 </style>
+
 </head>
 
 <body>
 
-<a href="index.html">← Back</a>
-<h2>White Binder</h2>
+<a class="back" href="index.html">← back</a>
+
+<h2>Yellow Binder</h2>
 
 <div id="gallery"></div>
 
 <script>
+
 const gallery = document.getElementById("gallery");
 
-for(let i=1;i<=64;i++){
-  gallery.innerHTML += `
-    <div class="card">
-      <img src="white/page ${i} of the white binder.jpg">
-      <div class="title">White Binder • Page ${i}</div>
-    </div>
+// 🔹 Yellow Binder 画像順（ここがページ番号になる）
+const images = [
+"yellow/91_IMG_0228.jpg",
+"yellow/90_IMG_0229.jpg",
+"yellow/89_IMG_0230.jpg",
+"yellow/88_IMG_0231.jpg",
+"yellow/87_IMG_0232.jpg",
+"yellow/86_IMG_0233.jpg",
+"yellow/85_IMG_0234.jpg",
+"yellow/84_IMG_0235.jpg",
+"yellow/83_IMG_0236.jpg",
+"yellow/82_IMG_0237.jpg",
+"yellow/81_IMG_0238.jpg",
+"yellow/80_IMG_0239.jpg",
+"yellow/79_IMG_0240.jpg",
+"yellow/78_IMG_0241.jpg",
+"yellow/77_IMG_0242.jpg",
+"yellow/76_IMG_0243.jpg",
+"yellow/75_IMG_0244.jpg",
+"yellow/74_IMG_0245.jpg",
+"yellow/73_IMG_0246.jpg",
+"yellow/72_IMG_0247.jpg",
+"yellow/71_IMG_0248.jpg",
+"yellow/70_IMG_0249.jpg",
+"yellow/69_IMG_0250.jpg",
+"yellow/68_IMG_0251.jpg",
+"yellow/67_IMG_0252.jpg",
+"yellow/66_IMG_0253.jpg",
+"yellow/65_IMG_0254.jpg",
+"yellow/64_IMG_0255.jpg",
+"yellow/63_IMG_0256.jpg",
+"yellow/62_IMG_0257.jpg",
+"yellow/61_IMG_0258.jpg",
+"yellow/60_IMG_0259.jpg",
+"yellow/59_IMG_0260.jpg",
+"yellow/58_IMG_0261.jpg",
+"yellow/57_IMG_0262.jpg",
+"yellow/56_IMG_0263.jpg",
+"yellow/55_IMG_0264.jpg",
+"yellow/54_IMG_0265.jpg",
+"yellow/53_IMG_0266.jpg",
+"yellow/52_IMG_0267.jpg",
+"yellow/51_IMG_0268.jpg",
+"yellow/50_IMG_0269.jpg",
+"yellow/49_IMG_0270.jpg",
+"yellow/48_IMG_0271.jpg",
+"yellow/47_IMG_0272.jpg",
+"yellow/46_IMG_0273.jpg",
+"yellow/45_IMG_0274.jpg",
+"yellow/44_IMG_0275.jpg",
+"yellow/43_IMG_0276.jpg",
+"yellow/42_IMG_0277.jpg",
+"yellow/41_IMG_0278.jpg",
+"yellow/40_IMG_0279.jpg",
+"yellow/39_IMG_0280.jpg",
+"yellow/38_IMG_0281.jpg",
+"yellow/37_IMG_0282.jpg",
+"yellow/36_IMG_0283.jpg",
+"yellow/35_IMG_0284.jpg",
+"yellow/34_IMG_0285.jpg",
+"yellow/33_IMG_0286.jpg",
+"yellow/32_IMG_0287.jpg",
+"yellow/31_IMG_0288.jpg",
+"yellow/30_IMG_0289.jpg",
+"yellow/29_IMG_0290.jpg",
+"yellow/28_IMG_0291.jpg"
+];
+
+// 🔹 自動生成
+images.forEach((src, index) => {
+
+  const div = document.createElement("div");
+  div.className = "card";
+
+  div.innerHTML = `
+    <img src="${src}" alt="">
+    <div class="page">Yellow Binder / Page ${index + 1}</div>
   `;
-}
+
+  gallery.appendChild(div);
+
+});
+
 </script>
 
 </body>
