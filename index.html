@@ -1,97 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Pokémon Card Binder</title>
-
-<style>
-body{
-  font-family: 'Inter', sans-serif;
-  padding:16px;
-  background:#fafafa;
-}
-
-.top-message{
-  margin-bottom:28px;
-}
-
-.top-message h1{
-  font-family: 'Poppins', sans-serif;
-  font-size:24px;
-  letter-spacing:0.8px;
-  margin-bottom:10px;
-}
-
-.en{
-  font-size:15px;
-  color:#444;
-  line-height:1.5;
-}
-
-a{
- display:block;
- padding:18px;
- margin:12px 0;
- background:#fff;
- border-radius:12px;
- text-decoration:none;
- color:#000;
- font-size:17px;
-
- box-shadow:0 2px 8px rgba(0,0,0,0.08);
- transition:0.2s;
- border:1px solid #f0f0f0;
-}
-
-a:hover{
- transform:translateY(-2px);
-}
-.dot{
-  display:inline-block;
-  width:16px;
-  height:16px;
-  border-radius:50%;
-  margin-right:10px;
-  vertical-align:middle;
-  border:1px solid rgba(0,0,0,0.08);
-  box-shadow:0 1px 3px rgba(0,0,0,0.2);
-}
-
-.yellow{ background:#FFD84D; }
-.gray{ background:#BFC3C8; }
-.black{ background:#222; }
-.orange{ background:#F59E0B; }
-.white{ background:#FFFFFF; border:1px solid #ddd; }
-
-.white{
-  background:#FFFFFF;
-  border:1px solid #ddd;
-}
-
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aoki’s Pokémon Card Binder</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+  <div class="container">
 
-<div class="top-message">
-  <h1>Pokémon Card Binder</h1>
+    <div class="header">
+      <h1 class="brand">Aoki’s Pokémon Card Binder</h1>
+      <p class="sub">If there’s any card you want, just let me know.</p>
+    </div>
 
-  <p class="en">
-   If there’s any card you want, just let me know.
-  </p>
-</div>
+    <div class="nav">
+      <a class="btn" href="search.html">🔍 Search Cards</a>
+    </div>
 
-<a href="search.html">🔍 Search Cards</a>
+    <div class="list">
+      <a href="yellow.html"><span class="dot" style="background:#FFD84D"></span>Yellow Binder</a>
+      <a href="gray.html"><span class="dot" style="background:#BFC3C8"></span>Gray Binder</a>
+      <a href="black.html"><span class="dot" style="background:#222"></span>Black Binder</a>
+      <a href="orange.html"><span class="dot" style="background:#F59E0B"></span>Orange Binder</a>
+      <a href="white.html"><span class="dot" style="background:#FFF; border:1px solid #ddd"></span>White Binder</a>
+    </div>
 
-<a href="yellow.html"><span class="dot yellow"></span> Yellow Binder</a>
-<a href="gray.html"><span class="dot gray"></span> Gray Binder</a>
-<a href="black.html"><span class="dot black"></span> Black Binder</a>
-<a href="orange.html"><span class="dot orange"></span> Orange Binder</a>
-<a href="white.html"><span class="dot white"></span> White Binder</a>
+    <div class="footerhint">Tip: Use Search to jump to the right page quickly.</div>
 
+  </div>
 </body>
 </html>
