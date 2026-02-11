@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>Card Search</title>
 
 <style>
@@ -11,6 +10,13 @@ body{
   font-family:sans-serif;
   padding:16px;
   background:#fafafa;
+}
+
+a.back{
+  display:inline-block;
+  margin-bottom:12px;
+  text-decoration:none;
+  color:#333;
 }
 
 input{
@@ -34,6 +40,13 @@ input{
   border-radius:8px;
 }
 
+.meta{
+  margin-top:8px;
+  font-size:13px;
+  color:#222;
+  font-weight:600;
+}
+
 .tag{
   font-size:13px;
   color:#666;
@@ -41,22 +54,35 @@ input{
   line-height:1.4;
 }
 </style>
-
 </head>
 
 <body>
 
+<a class="back" href="index.html">← back</a>
+
 <h2>Search Cards</h2>
 
-<input id="search" placeholder="Search by Pokémon name">
+<input id="search" placeholder="Enter the name of the Pokémon">
 
 <div id="result"></div>
 
 <script>
 // ---------------------------
-// 1) Yellow Binder pages
+// Helpers
 // ---------------------------
-const pages = [
+const normalize = (s) => (s || "").toLowerCase().replace(/\s+/g, "");
+
+// ---------------------------
+// 0) pages array (ALL binders go here)
+// ---------------------------
+const pages = [];
+
+// ---------------------------
+// 1) Yellow Binder (manual: safest)
+//  - Page numbers are sequential by this list order.
+//  - Image paths are exactly your filenames.
+// ---------------------------
+const yellowPages = [
   { image:"yellow/91_IMG_0228.jpg", cards:["gengar"] },
   { image:"yellow/90_IMG_0229.jpg", cards:["charizard"] },
   { image:"yellow/89_IMG_0230.jpg", cards:["gardevoir"] },
@@ -119,8 +145,17 @@ const pages = [
   { image:"yellow/28_IMG_0291.jpg", cards:["garchomp","giratina","arceus","dialga","palkia","muk","charizard","keldeo","mewtwo","moltres"] }
 ];
 
+yellowPages.forEach((p, i) => {
+  pages.push({
+    binder: "Yellow Binder",
+    page: i + 1,
+    image: p.image,
+    cards: p.cards
+  });
+});
+
 // ---------------------------
-// 2) Gray Binder pages (added)
+// 2) Gray Binder (page 1〜64)
 // ---------------------------
 const grayPages = {
   1:["charizard"], 2:["charizard"], 3:["charizard"], 4:["charizard"], 5:["charizard"], 6:["charizard"], 7:["charizard"], 8:["charizard"], 9:["charizard"], 10:["charizard"], 11:["charizard"],
@@ -175,12 +210,15 @@ const grayPages = {
 
 Object.entries(grayPages).forEach(([page, cards]) => {
   pages.push({
+    binder: "Gray Binder",
+    page: Number(page),
     image: `gray/page ${page} of the gray binder.jpg`,
-    cards: cards
+    cards
   });
 });
+
 // ---------------------------
-// 3) White Binder pages (added)
+// 3) White Binder (page 1〜64)
 // ---------------------------
 const whitePages = {
   1:["gengar"],
@@ -251,37 +289,38 @@ const whitePages = {
 
 Object.entries(whitePages).forEach(([page, cards]) => {
   pages.push({
+    binder: "White Binder",
+    page: Number(page),
     image: `white/page ${page} of the white binder.jpg`,
-    cards: cards
+    cards
   });
 });
 
 // ---------------------------
-// Search
+// 4) Search UI
 // ---------------------------
 document.getElementById("search").addEventListener("input", e => {
-  const word = e.target.value.toLowerCase().trim();
+  const word = e.target.value.trim();
   const result = document.getElementById("result");
 
   result.innerHTML = "";
   if(!word) return;
 
-  const normalize = (s) => s.toLowerCase().replace(/\s+/g, "");
+  const key = normalize(word);
 
   pages.forEach(p => {
-    const hit = p.cards.some(c => normalize(c).includes(normalize(word)));
+    const hit = p.cards.some(c => normalize(c).includes(key));
     if(hit){
       result.innerHTML += `
         <div class="card">
-          <img src="${p.image}">
+          <img src="${p.image}" alt="">
+          <div class="meta">${p.binder} / Page ${p.page}</div>
           <div class="tag">${p.cards.join(", ")}</div>
         </div>
       `;
     }
   });
 });
-
-
 </script>
 
 </body>
