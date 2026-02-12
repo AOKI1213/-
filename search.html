@@ -384,7 +384,20 @@ Object.entries(orangePages).forEach(([page, cards]) => {
   });
 });
 
-  // ---------------------------
+// ---------------------------
+// 4) Black Binder (page 1〜49)
+//  ※ 全ページ Pikachu
+// ---------------------------
+for (let i = 1; i <= 49; i++) {
+  pages.push({
+    binder: "Black Binder",
+    page: i,
+    image: `black/page ${i} of the black binder.jpg`,
+    cards: ["pikachu"]
+  });
+}
+
+// ---------------------------
 // Search UI
 // ---------------------------
 document.getElementById("search").addEventListener("input", (e) => {
