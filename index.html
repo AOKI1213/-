@@ -5,6 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Aoki’s Pokémon Card Binder</title>
   <link rel="stylesheet" href="style.css">
+
+  <style>
+  /* Black Binder special note */
+  .black-wrapper{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+
+  .note-black{
+    padding:6px 12px;
+    border-radius:999px;
+    background:linear-gradient(90deg,#000,#222);
+    color:#FFD84D;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.5px;
+    width:fit-content;
+  }
+  </style>
 </head>
 
 <body>
@@ -22,9 +42,17 @@
     <div class="list">
       <a href="yellow.html"><span class="dot" style="background:#FFD84D"></span>Yellow Binder</a>
       <a href="gray.html"><span class="dot" style="background:#BFC3C8"></span>Gray Binder</a>
-      <a href="black.html"><span class="dot" style="background:#222"></span>Black Binder</a>
       <a href="orange.html"><span class="dot" style="background:#F59E0B"></span>Orange Binder</a>
       <a href="white.html"><span class="dot" style="background:#FFF; border:1px solid #ddd"></span>White Binder</a>
+
+      <!-- Black Binder with special label -->
+      <div class="black-wrapper">
+        <a href="black.html">
+          <span class="dot" style="background:#222"></span>Black Binder
+        </a>
+        <div class="note-black">⚡ Pikachu only.</div>
+      </div>
+
     </div>
 
     <div class="footerhint">Tip: Use Search to jump to the right page quickly.</div>
