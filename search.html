@@ -304,6 +304,87 @@ Object.entries(whitePages).forEach(([page, cards]) => {
 });
 
 // ---------------------------
+// 3.5) Orange Binder (page 1〜64)
+// ---------------------------
+const orangePages = {
+  1:["metagross","zoroark","grimmsnarl","bellibolt"],
+  2:["palafin","raikou","whimsicott","lopunny"],
+  3:["diancie","gholdengo","fezandipiti","roaring moon"],
+  4:["eelektross","volcanion","rotom","scrafty"],
+  5:["hydreigon","oricorio","absol","mabosstiff"],
+  6:["hawlucha","kangaskhan","latias","venusaur"],
+  7:["clefable","zygarde","starmie","zapdos"],
+  8:["dragapult","serperior","genesect","froslass"],
+  9:["lucario","calyrex","venusaur","blastoise","fezandipiti","arceus","ceruledge","urshifu","milotic","moltres"],
+  10:["zacian","ogerpon","medicham","lucario","wo-chien","roaring moon","umbreon","keldeo"],
+  11:["golisopod","jellicent","diancie","zygarde","crobat","palafin"],
+  12:["ursaluna","mawile","great tusk","yanmega","palkia","zapdos","urshifu","roaring moon","koraidon","garchomp","salamence","mimikyu","oricorio","espeon"],
+  13:["audino","eevee","deoxys","glaceon","dialga","giratina","greninja","ninetales"],
+  14:["latios","latias","scizor","gyarados"],
+  15:["gyarados","suicune","entei","raikou"],
+  16:["meloetta","mew","reshiram","shaymin","alakazam","grimmsnarl"],
+  17:["iron hands","zacian","mimikyu","eevee","rayquaza","dialga","jirachi","groudon","celebi","manaphy","minun"],
+  18:["dragonite","gyarados","mimikyu","mewtwo"],
+  19:["wattrel","silvally","infernape","typhlosion","nidoking","altaria","magikarp","haunter","psyduck"],
+  20:["zekrom","piplup"],
+  21:["psyduck","clefairy"],
+  22:["rayquaza","meowth","pichu"],
+  // 「ブルメリ」=表記ゆれっぽいので一旦入れず（必要なら英名教えて！）
+  23:["pichu","snorlax"],
+  24:["snorlax","arceus"],
+  25:["arceus"],
+  26:["arceus"],
+  27:["meloetta","jirachi","gardevoir","purrloin","cinccino","piplup"],
+  28:["charmander","charmeleon","torchic","dedenne","raichu","teddiursa","ursaring","minccino","snivy"],
+  29:["kirlia","mudkip","lucario","munchlax","whismur","torchic","zorua","eevee","zapdos","greninja","charmander"],
+  30:["mimikyu","smeargle","tyranitar","piplup","regigigas","zekrom","charizard","darkrai","gallade","bellibolt","hydreigon"],
+  31:["bouffalant","iron hands","revavroom","ursaluna","samurott","zacian","calyrex","ogerpon","keldeo","houndoom"],
+  32:["gardevoir","camerupt","magnezone","blastoise","florges","malamar","aegislash","skarmory","regigigas","kyurem","cobalion","terrakion"],
+  33:["lucario","houndoom","torterra","tangrowth","mawile","pichu","psyduck","gyarados"],
+  34:["yanma","rattata","jigglypuff","raticate","pachirisu","totodile","jirachi","mareep","scyther","nidoran","natu","nidorino","meganium"],
+  35:["donphan","sandslash","luvdisc","jynx","lunatone","primeape","sudowoodo","farfetchd","horsea","cleffa","cubone","miltank","persian","machop","sandshrew"],
+  36:["porygon","persian","skiploom","parasect","palkia","aipom","chikorita","quilava","raichu","tentacool","ledian","hoppip","paras","smoochum"],
+  37:["golduck","exeggcute","totodile","electivire","mantine","bayleef","sandslash","torchic","blaziken","mothim","celebi","meowth","solrock","sceptile","lugia","darkrai"],
+  38:["skuntank","electrode","roserade","zapdos","pachirisu","luxray","raichu","heatran","arcanine","hooh","entei"],
+  39:["typhlosion","darkrai","blaziken","camerupt","arcanine","magmortar","empoleon","manaphy","swampert","kyogre","groudon","houndoom","bronzong"],
+  40:["tyranitar","lucario","darkrai"],
+  41:["lucario","manaphy","jirachi","lugia","celebi","infernape","entei","torterra","machamp","rhyperior","rampardos"],
+  42:["lucario","gliscor","kabutops","giratina","dusclops","banette","deoxys","metagross","mewtwo","gardevoir"],
+  43:["jirachi","spiritomb","heatran","infernape","cresselia","arceus","palkia","milotic","feraligatr","empoleon","phione","suicune","kingdra","manaphy"],
+  44:["floatzel","palkia","mamoswine","blastoise","absol","garchomp","zangoose","salamence","lugia","delcatty","dialga","jirachi","bastiodon","lumineon"],
+  45:["manectric","gliscor","venusaur","sceptile","roserade","shaymin","tangrowth","mew","registeel","snorlax","scizor"],
+  46:["rayquaza","snorlax","raichu","jirachi","magikarp","gengar","glaceon","jolteon"],
+  47:["articuno","starmie","machamp","graveler","mewtwo","weezing","rhyhorn","tangela","diglett","tyranitar","zapdos"],
+  48:["claydol","donphan","cleffa","luxray","tapu lele","garchomp","blastoise","venusaur"],
+  49:["lugia","dedenne","mew"],
+  50:["gengar","groudon","altaria","vulpix","charmeleon","psyduck","pichu"],
+  51:["meowth","garchomp","mewtwo"],
+  52:["mewtwo","lugia","gengar"],
+  53:["braixen","charizard","drowzee","morpeko","scizor","snorlax","claydol","garchomp","gengar","mew"],
+  54:["gengar"],
+  55:["gengar"],
+  56:["gengar","arceus"],
+  57:["rayquaza","darkrai","arceus"],
+  58:["deoxys","rayquaza","gardevoir","lugia","charmander"],
+  59:["gengar"],
+  60:["gengar","wailord","lumineon"],
+  61:["ponyta","onix","shedinja","shaymin","entei","arceus","porygon","venusaur","sharpedo","heatran","dialga","mudkip","quagsire","grumpig","palkia"],
+  62:["deoxys","swampert","raichu","gardevoir","drifblim","luxio","dialga","froslass","gallade","palkia","regigigas","blaziken","cleffa"],
+  63:["tyranitar","swampert","mamoswine","lapras","latios","latias","electrode","staraptor","manectric","dialga","zapdos","gardevoir","raichu","cresselia","shaymin"],
+  64:["dusknoir","spoink","luxray","aggron","electivire","absol","rayquaza","mareep","shiftry","wobbuffet","walrein","stunfisk","blaziken","ursaring","pachirisu","eevee"]
+};
+
+// Orange を pages[] に追加
+Object.entries(orangePages).forEach(([page, cards]) => {
+  pages.push({
+    binder: "Orange Binder",
+    page: Number(page),
+    image: `orange/page ${page} of the orange binder.jpg`,
+    cards
+  });
+});
+
+  // ---------------------------
 // Search UI
 // ---------------------------
 document.getElementById("search").addEventListener("input", (e) => {
